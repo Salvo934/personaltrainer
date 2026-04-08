@@ -1,7 +1,7 @@
 import type { BlogPost, SiteContent } from "../../types";
 
 /** Profilo di esempio: duplica la cartella `esempio-secondo`, rinominala (slug) e modifica solo i dati qui. */
-export const domains = ["esempiosecondo.it", "www.esempiosecondo.it"];
+export const domains = ["esempio.katahero.com"];
 
 export const siteContent: SiteContent = {
   enableIntro: false,
