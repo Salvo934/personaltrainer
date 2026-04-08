@@ -3,14 +3,19 @@ import Link from "next/link";
 import { getProfileBundle } from "@/data/site";
 import { SiteHeader } from "@/components/layout/SiteHeader";
 import { SiteFooter } from "@/components/layout/SiteFooter";
+import { buildPageMetadata } from "@/lib/seo";
 
 export const dynamic = "force-dynamic";
 
 export async function generateMetadata() {
   const { siteContent } = await getProfileBundle();
-  return {
-    title: `Blog · ${siteContent.brand.name}`,
-  };
+  const name = siteContent.brand.name;
+  return buildPageMetadata({
+    siteContent,
+    title: `Blog · ${name}`,
+    description: `${siteContent.blog.title} — ${siteContent.blog.description}`,
+    canonicalPath: "/blog",
+  });
 }
 
 export default async function BlogIndexPage() {
@@ -32,7 +37,13 @@ export default async function BlogIndexPage() {
           {blogPosts.map((post) => (
             <Link key={post.slug} href={`/blog/${post.slug}`} className="blog-list-item">
               <div className="blog-list-thumb">
-                <Image src={post.coverSrc} alt="" fill sizes="200px" className="photo-img" />
+                <Image
+                  src={post.coverSrc}
+                  alt={post.title}
+                  fill
+                  sizes="200px"
+                  className="photo-img"
+                />
               </div>
               <div className="blog-list-body">
                 <p className="blog-list-meta">

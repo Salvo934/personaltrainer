@@ -4,6 +4,18 @@ export const domains = ["katahero.com", "www.katahero.com", "alex.katahero.com"]
 
 export const siteContent: SiteContent = {
   enableIntro: false,
+  seo: {
+    description:
+      "Personal training e performance: coaching certificato, preparazione atletica e nutrizione applicata. Sessioni in studio, outdoor o online.",
+    keywords: [
+      "personal trainer",
+      "allenamento",
+      "performance",
+      "nutrizione",
+      "coaching",
+    ],
+    locale: "it_IT",
+  },
   brand: {
     name: "Alex Trainer",
     tag: "PT",

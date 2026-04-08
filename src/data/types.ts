@@ -71,8 +71,20 @@ export type SocialLink = {
   variant: "instagram" | "tiktok" | "youtube" | "facebook";
 };
 
+/** Opzionale: SEO e condivisione social (se assente si derivano hero/about). */
+export type SiteSeo = {
+  /** Meta description (consigliato ~150–160 caratteri). */
+  description?: string;
+  keywords?: string[];
+  /** Override immagine Open Graph / Twitter (default: hero.posterSrc). */
+  ogImage?: string;
+  /** es. it_IT */
+  locale?: string;
+};
+
 export type SiteContent = {
   enableIntro: boolean;
+  seo?: SiteSeo;
   brand: { name: string; tag: string; avatarSrc: string };
   nav: NavItem[];
   ctaLabel: string;

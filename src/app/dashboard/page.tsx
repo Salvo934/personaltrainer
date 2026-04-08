@@ -6,6 +6,7 @@ import { PT_PROFILE_QUERY } from "@/data/pt-profile-constants";
 export const metadata = {
   title: "Dashboard PT · Anteprima locali",
   description: "Elenco profili personal trainer e link per aprirli in locale.",
+  robots: { index: false, follow: false },
 };
 
 export default function DashboardPage() {
