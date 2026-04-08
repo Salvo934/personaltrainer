@@ -1,5 +1,16 @@
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
+## Multi-profile with custom domains
+
+This template supports multiple PT profiles and can resolve the active profile per domain.
+
+Set these env vars (see `.env.example`):
+
+- `NEXT_PUBLIC_PT_PROFILE`: default fallback profile.
+- `PT_PROFILE_DOMAINS`: domain-to-profile map, comma separated (e.g. `marcobianchi.it:marco-bianchi,alextrainer.it:alex-trainer`).
+
+When `PT_PROFILE_DOMAINS` matches the request host, that profile is used with highest priority.
+
 ## Getting Started
 
 First, run the development server:
@@ -14,7 +25,7 @@ pnpm dev
 bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3001](http://localhost:3001) with your browser to see the result (port set in `package.json` `dev` script).
 
 You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
