@@ -43,9 +43,9 @@ export function SiteHeader({ brandName, brandTag, avatarSrc, nav, ctaLabel, ctaH
                 className="brand-avatar"
                 src={avatarSrc}
                 alt=""
-                width={44}
-                height={44}
-                sizes="44px"
+                width={56}
+                height={56}
+                sizes="(max-width: 900px) 52px, 44px"
                 priority
               />
             </span>
