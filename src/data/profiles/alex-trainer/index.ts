@@ -1,6 +1,6 @@
 import type { BlogPost, SiteContent } from "../../types";
 
-export const domains = ["katahero.com", "www.katahero.com", "alex.katahero.com"];
+export const domains = [ "alex.katahero.com"];
 
 export const siteContent: SiteContent = {
   enableIntro: false,
