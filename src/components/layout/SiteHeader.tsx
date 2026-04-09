@@ -57,8 +57,8 @@ export function SiteHeader({ brandName, brandTag, avatarSrc, nav, ctaLabel, ctaH
 
           <button
             type="button"
-            className="mobile-nav-toggle"
-            aria-label="Apri menu"
+            className={`mobile-nav-toggle${mobileOpen ? " open" : ""}`}
+            aria-label={mobileOpen ? "Chiudi menu" : "Apri menu"}
             aria-expanded={mobileOpen}
             onClick={() => setMobileOpen((v) => !v)}
           >
@@ -88,23 +88,51 @@ export function SiteHeader({ brandName, brandTag, avatarSrc, nav, ctaLabel, ctaH
         role="dialog"
         aria-modal="true"
         aria-label="Menu principale (mobile)"
+        aria-hidden={!mobileOpen}
       >
-        <button type="button" className="mobile-nav-backdrop" aria-label="Chiudi menu" onClick={closeMobile} />
+        <button type="button" className="mobile-nav-backdrop" tabIndex={-1} aria-hidden="true" onClick={closeMobile} />
         <div className="mobile-nav-panel">
+          <div className="mobile-nav-panel-accent" aria-hidden="true" />
           <div className="mobile-nav-top">
-            <span className="mobile-nav-title">Menu</span>
+            <div className="mobile-nav-brand">
+              <span className="mobile-nav-brand-avatar" aria-hidden="true">
+                <Image
+                  className="mobile-nav-brand-img"
+                  src={avatarSrc}
+                  alt=""
+                  width={40}
+                  height={40}
+                  sizes="40px"
+                />
+              </span>
+              <div className="mobile-nav-brand-text">
+                <span className="mobile-nav-kicker">Navigazione</span>
+                <span className="mobile-nav-title">{brandName}</span>
+              </div>
+            </div>
             <button type="button" className="mobile-nav-close" aria-label="Chiudi menu" onClick={closeMobile}>
-              ×
+              <span className="mobile-nav-close-icon" aria-hidden="true">
+                <span />
+                <span />
+              </span>
             </button>
           </div>
           <nav className="mobile-nav" aria-label="Menu principale mobile">
             {nav.map((item) => (
-              <Link key={item.href} href={item.href} onClick={closeMobile}>
-                {item.label}
+              <Link
+                key={item.href}
+                href={item.href}
+                className="mobile-nav-link"
+                onClick={closeMobile}
+              >
+                <span className="mobile-nav-link-label">{item.label}</span>
+                <span className="mobile-nav-link-arrow" aria-hidden="true">
+                  →
+                </span>
               </Link>
             ))}
             <Link href={ctaHref} className="mobile-nav-cta" onClick={closeMobile}>
-              {ctaLabel}
+              <span>{ctaLabel}</span>
             </Link>
           </nav>
         </div>
