@@ -5,11 +5,6 @@ import {
   siteContent as alexSite,
 } from "./profiles/alex-trainer";
 import {
-  blogPosts as esempioBlog,
-  domains as esempioDomains,
-  siteContent as esempioSite,
-} from "./profiles/esempio-secondo";
-import {
   blogPosts as giuliaBlog,
   domains as giuliaDomains,
   siteContent as giuliaSite,
@@ -28,11 +23,6 @@ export const PROFILE_REGISTRY: Record<
   { siteContent: SiteContent; blogPosts: BlogPost[]; domains?: string[] }
 > = {
   "alex-trainer": { siteContent: alexSite, blogPosts: alexBlog, domains: alexDomains },
-  "esempio-secondo": {
-    siteContent: esempioSite,
-    blogPosts: esempioBlog,
-    domains: esempioDomains,
-  },
   "giulia-neri": { siteContent: giuliaSite, blogPosts: giuliaBlog, domains: giuliaDomains },
   "marco-bianchi": { siteContent: marcoSite, blogPosts: marcoBlog, domains: marcoDomains },
 };
