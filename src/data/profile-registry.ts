@@ -10,6 +10,11 @@ import {
   siteContent as esempioSite,
 } from "./profiles/esempio-secondo";
 import {
+  blogPosts as giuliaBlog,
+  domains as giuliaDomains,
+  siteContent as giuliaSite,
+} from "./profiles/giulia-neri";
+import {
   blogPosts as marcoBlog,
   domains as marcoDomains,
   siteContent as marcoSite,
@@ -28,6 +33,7 @@ export const PROFILE_REGISTRY: Record<
     blogPosts: esempioBlog,
     domains: esempioDomains,
   },
+  "giulia-neri": { siteContent: giuliaSite, blogPosts: giuliaBlog, domains: giuliaDomains },
   "marco-bianchi": { siteContent: marcoSite, blogPosts: marcoBlog, domains: marcoDomains },
 };
 
