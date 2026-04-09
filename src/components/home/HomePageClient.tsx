@@ -42,6 +42,7 @@ export function HomePageClient({ siteContent: c, blogPreviewPosts }: Props) {
             nav={c.nav}
             ctaLabel={c.ctaLabel}
             ctaHref={c.ctaHref}
+            socialLinks={c.social.links}
           />
 
           <main>

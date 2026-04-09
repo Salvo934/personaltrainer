@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import type { NavItem } from "@/data/site";
+import type { NavItem, SocialLink } from "@/data/site";
 
 type Props = {
   brandName: string;
@@ -12,9 +12,18 @@ type Props = {
   nav: NavItem[];
   ctaLabel: string;
   ctaHref: string;
+  socialLinks?: SocialLink[];
 };
 
-export function SiteHeader({ brandName, brandTag, avatarSrc, nav, ctaLabel, ctaHref }: Props) {
+export function SiteHeader({
+  brandName,
+  brandTag,
+  avatarSrc,
+  nav,
+  ctaLabel,
+  ctaHref,
+  socialLinks = [],
+}: Props) {
   const [mobileOpen, setMobileOpen] = useState(false);
 
   useEffect(() => {
@@ -103,7 +112,10 @@ export function SiteHeader({ brandName, brandTag, avatarSrc, nav, ctaLabel, ctaH
             <header className="mobile-nav-top">
               <div className="mobile-nav-heading">
                 <p className="mobile-nav-eyebrow">Menu</p>
-                <p className="mobile-nav-headline">{brandName}</p>
+                <p className="mobile-nav-headline">
+                  <span className="mobile-nav-headline-name">{brandName}</span>
+                  <span className="mobile-nav-headline-hash">#{brandTag.toLowerCase()}</span>
+                </p>
               </div>
               <button type="button" className="mobile-nav-close" aria-label="Chiudi menu" onClick={closeMobile}>
                 <span className="mobile-nav-close-icon" aria-hidden="true">
@@ -123,6 +135,34 @@ export function SiteHeader({ brandName, brandTag, avatarSrc, nav, ctaLabel, ctaH
                   </li>
                 ))}
               </ul>
+              {socialLinks.length > 0 ? (
+                <>
+                  <p className="mobile-nav-section-title" id="mobile-nav-social-heading">
+                    Social
+                  </p>
+                  <ul className="mobile-nav-list" aria-labelledby="mobile-nav-social-heading">
+                    {socialLinks.map((s) => (
+                      <li key={s.id}>
+                        <a
+                          href={s.href}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="mobile-nav-link mobile-nav-link--external"
+                          onClick={closeMobile}
+                        >
+                          <span className="mobile-nav-link-main">
+                            <span className="mobile-nav-link-label">{s.label}</span>
+                            <span className="mobile-nav-link-meta">{s.handle}</span>
+                          </span>
+                          <span className="mobile-nav-external" aria-hidden="true">
+                            ↗
+                          </span>
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                </>
+              ) : null}
             </nav>
             <div className="mobile-nav-footer">
               <Link href={ctaHref} className="mobile-nav-cta" onClick={closeMobile}>

@@ -47,6 +47,7 @@ export default async function BlogPostPage({ params }: PageProps) {
         nav={c.nav}
         ctaLabel={c.ctaLabel}
         ctaHref={c.ctaHref}
+        socialLinks={c.social.links}
       />
       <main>
         <article className="blog-post">

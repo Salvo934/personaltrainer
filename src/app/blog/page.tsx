@@ -30,6 +30,7 @@ export default async function BlogIndexPage() {
         nav={c.nav}
         ctaLabel={c.ctaLabel}
         ctaHref={c.ctaHref}
+        socialLinks={c.social.links}
       />
       <main className="blog-archive">
         <h1 className="blog-archive-title">Blog</h1>
