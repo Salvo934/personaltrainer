@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import type { NavItem, SocialLink } from "@/data/site";
+import { SocialPlatformIcon } from "@/components/ui/SocialPlatformIcon";
 
 type Props = {
   brandName: string;
@@ -65,7 +66,7 @@ export function SiteHeader({
             <span className="brand-text">
               <span className="brand-line">
                 <span className="brand-name">{brandName}</span>
-                <span className="brand-hash">#{brandTag.toLowerCase()}</span>
+                <span className="brand-hash">#{brandTag}</span>
               </span>
               <span className="brand-number">{brandTag}</span>
             </span>
@@ -114,7 +115,7 @@ export function SiteHeader({
                 <p className="mobile-nav-eyebrow">Menu</p>
                 <p className="mobile-nav-headline">
                   <span className="mobile-nav-headline-name">{brandName}</span>
-                  <span className="mobile-nav-headline-hash">#{brandTag.toLowerCase()}</span>
+                  <span className="mobile-nav-headline-hash">#{brandTag}</span>
                 </p>
               </div>
               <button type="button" className="mobile-nav-close" aria-label="Chiudi menu" onClick={closeMobile}>
@@ -136,32 +137,31 @@ export function SiteHeader({
                 ))}
               </ul>
               {socialLinks.length > 0 ? (
-                <>
+                <div className="mobile-nav-social-block">
                   <p className="mobile-nav-section-title" id="mobile-nav-social-heading">
                     Social
                   </p>
-                  <ul className="mobile-nav-list" aria-labelledby="mobile-nav-social-heading">
+                  <ul
+                    className="mobile-nav-social-icons"
+                    aria-labelledby="mobile-nav-social-heading"
+                  >
                     {socialLinks.map((s) => (
                       <li key={s.id}>
                         <a
                           href={s.href}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="mobile-nav-link mobile-nav-link--external"
+                          className={`mobile-nav-social-btn mobile-nav-social-btn--${s.variant}`}
+                          aria-label={`${s.label} — ${s.handle}`}
+                          title={`${s.handle}`}
                           onClick={closeMobile}
                         >
-                          <span className="mobile-nav-link-main">
-                            <span className="mobile-nav-link-label">{s.label}</span>
-                            <span className="mobile-nav-link-meta">{s.handle}</span>
-                          </span>
-                          <span className="mobile-nav-external" aria-hidden="true">
-                            ↗
-                          </span>
+                          <SocialPlatformIcon variant={s.variant} className="mobile-nav-social-icon-svg" />
                         </a>
                       </li>
                     ))}
                   </ul>
-                </>
+                </div>
               ) : null}
             </nav>
             <div className="mobile-nav-footer">
