@@ -18,14 +18,11 @@ import {
 export const DEFAULT_PROFILE_ID = "alex-trainer" as const;
 
 /** Ogni chiave = nome cartella in `profiles/` e valore di `NEXT_PUBLIC_PT_PROFILE`. */
-export const PROFILE_REGISTRY: Record<
-  string,
-  { siteContent: SiteContent; blogPosts: BlogPost[]; domains?: string[] }
-> = {
+export const PROFILE_REGISTRY = {
   "alex-trainer": { siteContent: alexSite, blogPosts: alexBlog, domains: alexDomains },
   "giulia-neri": { siteContent: giuliaSite, blogPosts: giuliaBlog, domains: giuliaDomains },
   "marco-bianchi": { siteContent: marcoSite, blogPosts: marcoBlog, domains: marcoDomains },
-};
+} satisfies Record<string, { siteContent: SiteContent; blogPosts: BlogPost[]; domains?: string[] }>;
 
 export type ProfileId = keyof typeof PROFILE_REGISTRY;
 
