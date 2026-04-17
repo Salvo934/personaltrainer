@@ -14,6 +14,11 @@ import {
   domains as marcoDomains,
   siteContent as marcoSite,
 } from "./profiles/marco-bianchi";
+import {
+  blogPosts as saraBlog,
+  domains as saraDomains,
+  siteContent as saraSite,
+} from "./profiles/sara-martini";
 
 export const DEFAULT_PROFILE_ID = "alex-trainer" as const;
 
@@ -22,6 +27,7 @@ export const PROFILE_REGISTRY = {
   "alex-trainer": { siteContent: alexSite, blogPosts: alexBlog, domains: alexDomains },
   "giulia-neri": { siteContent: giuliaSite, blogPosts: giuliaBlog, domains: giuliaDomains },
   "marco-bianchi": { siteContent: marcoSite, blogPosts: marcoBlog, domains: marcoDomains },
+  "sara-martini": { siteContent: saraSite, blogPosts: saraBlog, domains: saraDomains },
 } satisfies Record<string, { siteContent: SiteContent; blogPosts: BlogPost[]; domains?: string[] }>;
 
 export type ProfileId = keyof typeof PROFILE_REGISTRY;
