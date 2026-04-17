@@ -3,6 +3,7 @@ import { cache } from "react";
 import {
   DEFAULT_PROFILE_ID,
   PROFILE_REGISTRY,
+  type ProfileId,
   resolveProfileId,
   resolveProfileIdFromHost,
 } from "./profile-registry";
@@ -17,7 +18,11 @@ export const getProfileBundle = cache(
   }> => {
     const store = await cookies();
     const headersStore = await headers();
-    const host = headersStore.get("x-forwarded-host") ?? headersStore.get("host");
+    // Vercel: dominio visitato è in x-forwarded-host; host può coincidere. Preferiamo forwarded.
+    const host =
+      headersStore.get("x-forwarded-host") ??
+      headersStore.get("x-vercel-forwarded-host") ??
+      headersStore.get("host");
     const hostId = resolveProfileIdFromHost(host);
     const cookieId = store.get(PT_PROFILE_COOKIE)?.value?.trim();
 
@@ -28,7 +33,9 @@ export const getProfileBundle = cache(
         : resolveProfileId());
 
     const bundle =
-      PROFILE_REGISTRY[id] ?? PROFILE_REGISTRY[DEFAULT_PROFILE_ID];
+      id in PROFILE_REGISTRY
+        ? PROFILE_REGISTRY[id as ProfileId]
+        : PROFILE_REGISTRY[DEFAULT_PROFILE_ID];
 
     return { id, siteContent: bundle.siteContent, blogPosts: bundle.blogPosts };
   },

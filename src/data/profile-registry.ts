@@ -32,8 +32,10 @@ export const PROFILE_REGISTRY = {
 
 export type ProfileId = keyof typeof PROFILE_REGISTRY;
 
+/** Host da header (es. X-Forwarded-Host su Vercel può contenere più valori separati da virgola). */
 function normalizeHost(host: string): string {
-  return host.trim().toLowerCase().replace(/:\d+$/, "");
+  const first = host.split(",")[0]?.trim() ?? "";
+  return first.toLowerCase().replace(/:\d+$/, "");
 }
 
 function parseHostProfileMap(): Record<string, string> {
